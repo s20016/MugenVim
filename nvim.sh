@@ -17,6 +17,12 @@ install_default() {
   # sudo npm install -g prettier-standard standard
 }
 
+# Change tab color in lightline-gruvbox
+gruvbox_tab() {
+	sed -i '146s/4/0/g; 153s/mono0/green/g; 153s/5/0/g' \
+	$HOME/.local/share/nvim/site/plugged/lightline-gruvbox.vim/plugin/lightline-gruvbox.vim
+}
+
 TMP_DIR=$(mktemp -d $HOME/s20016-XXX)
 BACKUP_DIR="$HOME/ORIGINAL_CONF"
 CONFIG_DIR="$HOME/.config/nvim"
@@ -62,3 +68,5 @@ fi
 
 nvim +'PlugInstall --sync' +qa
 rm -rf $TMP_DIR
+gruvbox_tab
+
