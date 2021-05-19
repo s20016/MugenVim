@@ -6,7 +6,6 @@
 
 filetype plugin indent on
 
-syntax enable                           " Enables syntax highlighing
 set autochdir                           " Change to cwd
 set autoindent                          " Indent ln similar to preceding ln
 set autoread                            " Auto detect changes outside nvim
@@ -46,11 +45,12 @@ set t_Co=256                            " Support 256 colors
 set tabstop=2                           " Insert 2 spaces for tab
 set termguicolors                       " Enables 24-bit color
 set title                               " Set window title
-set titleold="Terminal"                 " Default window title
 set titlestring=%F                      " Title of window
 set updatetime=100                      " Set update time for Git gutter
 set visualbell                          " Error flash screen
 set wildmenu                            " Cmd tab complete opt
+
+syntax enable                           " Enables syntax highlighing
 
 " set relativenumber                      " Number relative to line
 " set colorcolumn=80                      " Add col color in ln 80

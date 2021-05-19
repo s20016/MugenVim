@@ -70,23 +70,21 @@ highlight SignColumn guibg=none ctermbg=none
 " See `:h g:lightline.colorscheme` for available colorscheme
 
 let g:lightline = {
-			\ 'colorscheme': 'gruvbox',
-			\ 'active': {
-			\ 'left': [
-			\		[ 'mode', 'paste' ],
-			\   [ 'gitbranch' ],  [ 'readonly', 'filename', 'modified' ] ],
+	\ 'colorscheme': 'gruvbox',
+	\ 'active': {
+	\ 'left': [
+	\		[ 'mode', 'paste' ],
+	\   [ 'gitbranch' ],
+	\   [ 'readonly', 'filename', 'modified' ] ],
 	\ 'right': [
-	\   [ 'lineinfo' ], [ 'percent' ], [ 'filetype' ] ]
-	\ },
+	\   [ 'lineinfo' ], [ 'percent' ], [ 'filetype' ] ] },
 	\ 'component_function': {
   \   'gitbranch': 'FugitiveHead', 
-  \   'lineinfo': 'LightlineLineinfo' }
-	\ }
-
-" Tab (Show filename only)
-let g:lightline.tab = {
-	\ 'active': [ 'filename' ],
-	\ 'inactive': [ 'filename' ] }
+  \   'lineinfo': 'LightlineLineinfo' },
+	\ 'tab': {
+	\  'active': [ 'filename' ],
+	\  'inactive': [ 'tabnum' ]
+	\ } }
 
 " Highlight active window color
 function! LightlineLineinfo() abort

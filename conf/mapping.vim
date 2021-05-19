@@ -82,6 +82,9 @@ inoremap '<CR> ''<Esc>ha
 command! FixWhiteSpace :%s/\s\+$//e                       
 "  ==== AUTO CMD ===============================================================
 
+autocmd BufEnter * set cursorline
+autocmd BufLeave * set nocursorline
+
 augroup vimrc-remember-cursor-position
 	autocmd!
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
