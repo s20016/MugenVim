@@ -17,17 +17,17 @@ install_default() {
   # sudo npm install -g prettier-standard standard
 }
 
-# Change tab color in lightline-gruvbox
-gruvbox_tab() {
-	sed -i '146s/4/0/g; 153s/mono0/green/g; 153s/5/0/g' \
-	$HOME/.local/share/nvim/site/plugged/lightline-gruvbox.vim/plugin/lightline-gruvbox.vim
-}
-
 TMP_DIR=$(mktemp -d $HOME/s20016-XXX)
 BACKUP_DIR="$HOME/ORIGINAL_CONF"
 CONFIG_DIR="$HOME/.config/nvim"
 SESSIO_DIR="$HOME/.config/nvim/session"
-PLUGIN_DIR="$HOME/.local/share/nvim/site/autoload"
+ALPLUG_DIR="$HOME/.local/share/nvim/site/plugged"
+
+# Change tab color in lightline-gruvbox
+gruvbox_tab() {
+	sed -i '146s/4/0/g; 153s/mono0/green/g; 153s/5/0/g' \
+		$ALPLUG_DIR/lightline-gruvbox.vim/plugin/lightline-gruvbox.vim
+	}
 
 # Save backup if $CONFIG_DIR exist
 if [ -d $CONFIG_DIR ]; then
@@ -38,6 +38,7 @@ if [ -d $CONFIG_DIR ]; then
       echo "Processing Installation";
       mkdir $BACKUP_DIR;
       mv $CONFIG_DIR $BACKUP_DIR;
+			rm -rf $ALPLUG_DIR/
       if [ ! -d $CONFIG_DIR ]; then
         echo "Backup Saved To $BACKUP_DIR";
       else
@@ -63,10 +64,10 @@ if [ ! -d $CONFIG_DIR ]; then
   cp $TMP_DIR/nvim/conf/mapping.vim $CONFIG_DIR/.
   cp $TMP_DIR/nvim/conf/plugins.vim $CONFIG_DIR/.
   mkdir $SESSIO_DIR
+	gruvbox_tab
   nvim +'source $CONFIG_DIR/init.vim' +q
 fi
 
 nvim +'PlugInstall --sync' +qa
 rm -rf $TMP_DIR
-gruvbox_tab
 
