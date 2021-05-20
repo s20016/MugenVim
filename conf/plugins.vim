@@ -1,7 +1,7 @@
 " =============================================================================
 " Filename: ~/.config/nvim/plugins.vim
 " Author: s20016
-" Last Change: 2021/05/18
+" Last Change: 2021/05/20
 " =============================================================================
 
 " PLUGIN: Themes
@@ -59,11 +59,16 @@ let g:gitgutter_sign_removed_first_line = '-'
 let g:gitgutter_sign_removed_above_and_below = '='
 let g:gitgutter_sign_modified_removed = '-'
 
+let g:gitgutter_override_sign_column_highlight = 0
+let g:gitgutter_set_sign_backgrounds = 1
+
 highlight GitGutterAdd    guifg=#95e454 ctermfg=119
 highlight GitGutterChange guifg=#cae682 ctermfg=180
 highlight GitGutterDelete guifg=#e5786d ctermfg=173
-highlight SignColumn guibg=none ctermbg=none
 
+" highlight Normal ctermbg=none guibg=none
+highlight SignColumn ctermbg=none guibg=none
+" highlight LineNr ctermbg=none guibg=none
 
 " ==== STATUS LINE ============================================================
 " See `:h g:lightline.component` for details
@@ -82,7 +87,7 @@ let g:lightline = {
   \   'gitbranch': 'FugitiveHead', 
   \   'lineinfo': 'LightlineLineinfo' },
 	\ 'tab': {
-	\  'active': [ 'filename' ],
+	\  'active': [ 'filename', 'modified' ],
 	\  'inactive': [ 'tabnum' ]
 	\ } }
 

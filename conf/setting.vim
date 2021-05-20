@@ -1,11 +1,12 @@
 " =============================================================================
 " Filename: ~/.config/nvim/setting.vim
 " Author: s20016
-" Last Change: 2021/05/18
+" Last Change: 2021/05/20
 " =============================================================================
 
 filetype plugin indent on
 
+syntax enable                           " Enables syntax highlighing
 set autochdir                           " Change to cwd
 set autoindent                          " Indent ln similar to preceding ln
 set autoread                            " Auto detect changes outside nvim
@@ -49,8 +50,6 @@ set titlestring=%F                      " Title of window
 set updatetime=100                      " Set update time for Git gutter
 set visualbell                          " Error flash screen
 set wildmenu                            " Cmd tab complete opt
-
-syntax enable                           " Enables syntax highlighing
 
 " set relativenumber                      " Number relative to line
 " set colorcolumn=80                      " Add col color in ln 80
