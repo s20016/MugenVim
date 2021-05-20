@@ -25,7 +25,7 @@ install_default() {
 
 # Change tab color in lightline-gruvbox
 gruvbox_tab() {
-	sed -i '146s/4/0/g; 153s/mono0/green/g; 153s/5/0/g' \
+	sed -i '153s/mono0/green/g; 146s/mono4/mono0/g; 153s/mono5/mono0/g' \
 		$ALPLUG_DIR/lightline-gruvbox.vim/plugin/lightline-gruvbox.vim
 	}
 
