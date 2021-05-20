@@ -38,7 +38,7 @@ if [ -d $CONFIG_DIR ]; then
       echo "Processing Installation";
       mkdir $BACKUP_DIR;
       mv $CONFIG_DIR $BACKUP_DIR;
-			rm -rf $ALPLUG_DIR;
+      rm -rf $ALPLUG_DIR;
       if [ ! -d $CONFIG_DIR ]; then
         echo "Backup Saved To $BACKUP_DIR";
       else
@@ -64,7 +64,7 @@ if [ ! -d $CONFIG_DIR ]; then
   cp $TMP_DIR/nvim/conf/mapping.vim $CONFIG_DIR/.
   cp $TMP_DIR/nvim/conf/plugins.vim $CONFIG_DIR/.
   mkdir $SESSIO_DIR
-	gruvbox_tab
+  gruvbox_tab
   nvim +'source $CONFIG_DIR/init.vim' +q
 fi
 
