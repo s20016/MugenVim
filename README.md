@@ -1,6 +1,6 @@
 # 1 USER : 1 NEOVIM
 
-This is my Neovim configuration for both Windows and Linux (Ubuntu). Since I barely understand my Linux class which is in Japanese, I am a self-taught student most of the time in school and at home. I used to operate nvim with my professor's configurations but after a while, I realized 2 things. One, nvim rocks! And two, how awesome it would be if I use nvim with my own configurations! 
+This is my Neovim configuration for both Windows and Linux (Ubuntu). Since I barely understood my Linux class which is in Japanese, I am a self-taught student most of the time in school and at home. I used to operate nvim with my professor's configurations but after a while, I realized 2 things. One, nvim rocks! And two, how awesome it would be if I use nvim with my own configurations! 
 
 I will try to make my configurations simple, documented and organized as much as I can. You can download or clone this repository but I do not recommend it! Configurations only makes sense if you are the one who created it.
 
