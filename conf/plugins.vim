@@ -4,6 +4,12 @@
 " Last Change: 2021/05/20
 " =============================================================================
 
+" netrw file browser
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 3
+let g:netrw_winsize = 15
+
 " PLUGIN: Themes
 let g:gruvbox_italic=1
 colorscheme gruvbox
@@ -15,18 +21,6 @@ autocmd FileType apache setlocal commentstring=#\ %s
 " PLUGIN: colorizer.lua
 lua require'colorizer'.setup()
 
-" PLUGIN: Startify
-" let g:startify_change_to_dir = 0
-" let g:startify_session_dir = '~/.config/nvim/session'
-" let g:startify_lists = [
-" 	\ { 'type': 'sessions',  'header': ['   Sessions']       },
-" 	\ { 'type': 'bookmarks', 'header': ['   Bookmarks']      }, ]
-" let g:startify_bookmarks = [ {'c': '~/.config/nvim/init.vim'} ]
-" let g:startify_custom_header = [
-" 	\ '',
-" 	\ '   NVIM STARTIFY',
-" 	\ '', ]
-
 " PLUGIN: Neovim Session
 let g:session_directory = "~/.config/nvim/session"
 let g:session_command_aliases = 1
@@ -34,8 +28,31 @@ let g:session_autoload = "no"
 let g:session_autosave = "no"
 
 " PLUGIN: FZF (Open below)
-let g:fzf_layout = { 'down': '~40%' }
+" let g:fzf_layout = { 'down': '~40%' }
 
+" ==== STARTIFY ===============================================================
+
+" PLUGIN: Startify
+let g:startify_change_to_dir = 0
+let g:startify_session_dir = '~/.config/nvim/session'
+let g:startify_lists = [
+			\ { 'type': 'sessions',  'header': ['   Sessions']  },
+			\ { 'type': 'bookmarks', 'header': ['   Bookmarks'] }, ]
+
+let g:startify_bookmarks = [
+			\ { 'a': '~/.bash_aliases' } ]
+
+" let g:startify_custom_header = [
+" 	\ '',
+" 	\ '   NVIM STARTIFY' ]
+
+let g:startify_custom_header = [
+			\ '    ____  ____   ___      _ _____ ____ _____ ____   ',
+			\ '   |  _ \|  _ \ / _ \    | | ____/ ___|_   _/ ___|  ',
+			\ '   | |_) | |_) | | | |_  | |  _|| |     | | \___ \  ',
+			\ '   |  __/|  _ <| |_| | |_| | |__| |___  | |  ___) | ',
+			\ '   |_|   |_| \_\\___/ \___/|_____\____| |_| |____/  ',
+			\ '' ]
 
 " ==== ERROR & WARNING ========================================================
 
@@ -66,7 +83,7 @@ highlight GitGutterAdd    guifg=#95e454 ctermfg=119
 highlight GitGutterChange guifg=#cae682 ctermfg=180
 highlight GitGutterDelete guifg=#e5786d ctermfg=173
 
-" highlight Normal ctermbg=none guibg=none
+highlight Normal ctermbg=none guibg=none
 highlight SignColumn ctermbg=none guibg=none
 " highlight LineNr ctermbg=none guibg=none
 

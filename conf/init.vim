@@ -4,6 +4,9 @@
 " Last Change: 2021/05/20
 " =============================================================================
 
+" Enables alias in nvim
+let $BASH_ENV = "~/.bash_aliases"
+
 " Python3 PATH
 let g:python3_host_prog = '/usr/bin/python3'
 
@@ -13,6 +16,7 @@ call plug#begin(expand('~/.local/share/nvim/site/plugged'))
 
 Plug 'morhetz/gruvbox'                                    " Gruvbox theme
 Plug 'shinchu/lightline-gruvbox.vim'                      " Gruvbox limelight
+Plug 'mhinz/vim-startify'                                 " Custom vim start
 
 Plug 'airblade/vim-gitgutter'                             " Gutter changes
 Plug 'itchyny/lightline.vim'                              " Minimal status line
@@ -30,8 +34,9 @@ Plug 'junegunn/fzf.vim'                                   " FZF ext.
 Plug 'norcalli/nvim-colorizer.lua'                        " Color CSS
 Plug 'jiangmiao/auto-pairs'                               " Auto pair brackets 
 Plug 'dense-analysis/ale'                                 " Linting
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}       " Column select
+Plug 'junegunn/goyo.vim'                                  " Distraction-free
 
-" Plug 'mhinz/vim-startify'                                 " Custom vim start
 " Plug 'tomasiser/vim-code-dark'                            " VS Code theme
 
 call plug#end()
@@ -43,3 +48,4 @@ source $HOME/.config/nvim/plugins.vim
 
 " NOTE:
 " Sessions are saved in $HOME/.config/nvim/session/
+" Netrwhist are saved in $HOME/.config/nvim/
