@@ -1,15 +1,8 @@
 #!/bin/bash
 
-# This installation by default includes:
+# Installation includes:
 #   Python3 and Java
-#
-# To include NodeJS: Uncomment Ln: 15-17
-
-TMP_DIR=$(mktemp -d $HOME/s20016-XXX)
-BACKUP_DIR="$HOME/ORIGINAL_CONF"
-CONFIG_DIR="$HOME/.config/nvim"
-SESSIO_DIR="$HOME/.config/nvim/session"
-ALPLUG_DIR="$HOME/.local/share/nvim/site/plugged"
+# To include NodeJS: Uncomment Ln: 14-16
 
 # Python3, Java, NodeJS
 install_default() {
@@ -22,6 +15,12 @@ install_default() {
   # sudo npm install -g eslint
   # sudo npm install -g prettier-standard standard
 }
+
+TMP_DIR=$(mktemp -d $HOME/s20016-XXX)
+BACKUP_DIR="$HOME/ORIGINAL_CONF"
+CONFIG_DIR="$HOME/.config/nvim"
+SESSIO_DIR="$HOME/.config/nvim/session"
+ALPLUG_DIR="$HOME/.local/share/nvim/site/plugged"
 
 # Change tab color in lightline-gruvbox
 gruvbox_tab() {
@@ -41,8 +40,6 @@ if [ -d $CONFIG_DIR ]; then
       rm -rf $ALPLUG_DIR;
       if [ ! -d $CONFIG_DIR ]; then
         echo "Backup Saved To $BACKUP_DIR";
-      else
-        rm $CONFIG_DIR
       fi;;
     *   )
       echo "Installation Cancelled"; exit;;

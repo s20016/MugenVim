@@ -1,7 +1,7 @@
 " =============================================================================
 " Filename: ~/.config/nvim/plugins.vim
 " Author: s20016
-" Last Change: 2021/05/20
+" Last Change: Sun May 23 12:08:58 JST 2021
 " =============================================================================
 
 " netrw file browser
@@ -13,7 +13,6 @@ let g:netrw_winsize = 15
 " PLUGIN: Themes
 let g:gruvbox_italic=1
 colorscheme gruvbox
-" colorscheme codedark
 
 " PLUGIN: vim-commentary
 autocmd FileType apache setlocal commentstring=#\ %s
@@ -34,6 +33,7 @@ let g:session_autosave = "no"
 
 " PLUGIN: Startify
 let g:startify_change_to_dir = 0
+let g:startify_files_number = 5
 let g:startify_session_dir = '~/.config/nvim/session'
 let g:startify_lists = [
 			\ { 'type': 'sessions',  'header': ['   Sessions']  },
