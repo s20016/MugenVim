@@ -15,11 +15,12 @@ If you're not yet comfortable creating your own configuration then feel free to 
 #
 ### **INSTALLATION**
 
-Run this command in your terminal. **NOTE:** Make sure you have curl installed!
+Run this command in your terminal. Make sure you have curl installed!  
+**Note:** Read [nvim.sh](./nvim.sh) for details of the command.
 
 ```bash
 bash <(curl -s https://raw.githubusercontent.com/s20016/nvim/master/nvim.sh)
 ```
 
-### **What's next?**
-
+#
+<h5 align=right>See <a href="https://github.com/s20016/nvim/wiki">Wiki</a> for details.<h5>
