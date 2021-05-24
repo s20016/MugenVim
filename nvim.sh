@@ -54,7 +54,7 @@ if [ ! -d $CONFIG_DIR ]; then
   mkdir -p $CONFIG_DIR
   sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  cd $TMP_DIR && git clone https://github.com/s20016/nvim.git
+  cd $TMP_DIR && git clone https://github.com/s20016/MugenVim.git
   cp $TMP_DIR/nvim/conf/init.vim $CONFIG_DIR/.
   nvim +'PlugInstall --sync' +qa
   cp $TMP_DIR/nvim/conf/setting.vim $CONFIG_DIR/.
