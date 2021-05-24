@@ -8,7 +8,7 @@ If you're not yet comfortable creating your own configuration then feel free to 
 
 ## So what's up with my nvim config?
 
-> It's minimal, simple and user-friendly.
+> It's minimal.
 
 ![preview.png](./media/preview.png)
 
@@ -22,5 +22,3 @@ Run this command in your terminal. Make sure you have curl installed!
 bash <(curl -s https://raw.githubusercontent.com/s20016/nvim/master/nvim.sh)
 ```
 
-#
-<h5 align=right>See <a href="https://github.com/s20016/nvim/wiki">Wiki</a> for details.<h5>
