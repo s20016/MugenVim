@@ -19,6 +19,6 @@ Run this command in your terminal. Make sure you have curl installed!
 **Note:** Read [nvim.sh](./nvim.sh) for details of the command.
 
 ```bash
-bash <(curl -s https://raw.githubusercontent.com/s20016/nvim/master/nvim.sh)
+bash <(curl -s https://raw.githubusercontent.com/s20016/MugenVim/master/nvim.sh)
 ```
 
