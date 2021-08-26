@@ -8,7 +8,7 @@ If you're not yet comfortable creating your own configuration then feel free to 
 
 ## So what's up with my nvim config?
 
-> It's minimal. Works both in Ubuntu and Windows.
+> It's minimal. Works both on Ubuntu and Windows.
 
 ![preview2.png](./media/preview2.png)
 ![preview.png](./media/preview.png)
