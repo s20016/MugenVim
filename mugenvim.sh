@@ -16,8 +16,7 @@ install_default() {
   # sudo npm install -g prettier-standard standard
 }
 
-# TMP_DIR=$(mktemp -d $HOME/s20016-XXX)
-TMP_DIR=$(mkdir $HOME/MugenVim)
+TMP_DIR=$(mktemp -d $HOME/s20016-XXX)
 BACKUP_DIR="$HOME/ORIGINAL_CONF"
 CONFIG_DIR="$HOME/.config/nvim"
 SESSIO_DIR="$HOME/.config/nvim/session"
@@ -56,11 +55,11 @@ if [ ! -d $CONFIG_DIR ]; then
   sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   cd $TMP_DIR && git clone https://github.com/s20016/MugenVim.git
-	cd $TMP_DIR && cp nvim/conf/init.vim $CONFIG_DIR/.
+	cp $TMP_DIR/conf/init.vim $CONFIG_DIR/.
   nvim +'PlugInstall --sync' +qa
-  cd $TMP_DIR && cp ./nvim/conf/setting.vim $CONFIG_DIR/.
-  cd $TMP_DIR && cp ./nvim/conf/mapping.vim $CONFIG_DIR/.
-  cd $TMP_DIR && cp ./nvim/conf/plugins.vim $CONFIG_DIR/.
+	cp $TMP_DIR/conf/setting.vim $CONFIG_DIR/.
+	cp $TMP_DIR/conf/mapping.vim $CONFIG_DIR/.
+	cp $TMP_DIR/conf/plugins.vim $CONFIG_DIR/.
   mkdir $SESSIO_DIR
   gruvbox_tab
   nvim +'source $CONFIG_DIR/init.vim' +q
