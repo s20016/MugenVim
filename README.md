@@ -26,6 +26,6 @@ bash <(curl -s https://raw.githubusercontent.com/s20016/MugenVim/master/mugenvim
 
 **MugenVim w/ Python3 and Java**
 ```bash
-bash <(curl -s https://raw.githubusercontent.com/s20016/MugenVim/master/nvim.sh)
+bash <(curl -s https://raw.githubusercontent.com/s20016/MugenVim/master/mugenvim_plus.sh)
 ```
 
