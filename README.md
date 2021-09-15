@@ -19,6 +19,12 @@ If you're not yet comfortable creating your own configuration then feel free to 
 Run this command in your terminal. Make sure you have curl installed!  
 **Note:** Read [nvim.sh](./nvim.sh) for details of the command.
 
+**Just MugenVim**
+```bash
+bash <(curl -s https://raw.githubusercontent.com/s20016/MugenVim/master/mugenvim.sh)
+```
+
+**MugenVim w/ Python3 and Java**
 ```bash
 bash <(curl -s https://raw.githubusercontent.com/s20016/MugenVim/master/nvim.sh)
 ```
