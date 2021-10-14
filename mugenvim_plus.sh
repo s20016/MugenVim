@@ -50,6 +50,7 @@ fi
 if [ ! -d $CONFIG_DIR ]; then
   sudo apt update && sudo apt upgrade -y
   sudo apt install -y neovim
+  sudo apt install curl
 	install_default
   mkdir -p $CONFIG_DIR
   sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
