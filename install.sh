@@ -1,21 +1,5 @@
 #!/bin/bash
 
-# Installation includes:
-#   Python3 and Java
-# To include NodeJS: Uncomment Ln: 14-16
-
-# Python3, Java, NodeJS
-install_default() {
-  sudo apt install -y python3-pip
-  pip3 install --user pynvim
-  pip3 install --upgrade pynvim
-  pip3 install flake8 autopep8 black isort
-  sudo apt install -y default-jre default-jdk
-  # sudo apt install -y nodejs npm
-  # sudo npm install -g eslint
-  # sudo npm install -g prettier-standard standard
-}
-
 TMP_DIR=$(mktemp -d $HOME/s20016-XXX)
 BACKUP_DIR="$HOME/ORIGINAL_CONF"
 CONFIG_DIR="$HOME/.config/nvim"
@@ -51,7 +35,6 @@ if [ ! -d $CONFIG_DIR ]; then
   sudo apt update && sudo apt upgrade -y
   sudo apt install -y neovim
   sudo apt install curl
-	install_default
   mkdir -p $CONFIG_DIR
   sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
