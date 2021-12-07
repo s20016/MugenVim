@@ -1,7 +1,7 @@
 " =============================================================================
 " Filename: ~/.config/nvim/mapping.vim
 " Author: s20016
-" Last Change: Sun May 23 12:08:58 JST 2021
+" Last Change: Tue Dec  7 23:19:32 JST 2021
 " =============================================================================
 
 " For key mapping guide
@@ -13,6 +13,11 @@ let g:mapleader = ','
 " Auto save
 " au FocusGained,BufEnter * :silent! !
 " au FocusLost,WinLeave * :silent! w
+
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
 
 " Indent visual block
 vmap < <gv
@@ -48,31 +53,60 @@ nnoremap <silent> <leader><space> :noh<cr>
 
 " PLUGIN: FZF
 nnoremap <silent> <Leader>b :Buffers<CR>
-nnoremap <silent> <C-f> :Files<CR>
-nnoremap <silent> <Leader>f :Rg<CR>
+nnoremap <silent> <Leader>f :Files<CR>
+" nnoremap <silent> <Leader>f :Rg<CR>
 nnoremap <silent> <Leader>/ :BLines<CR>
 nnoremap <silent> <Leader>' :Marks<CR>
-nnoremap <silent> <Leader>g :Commits<CR>   
+nnoremap <silent> <Leader>g :Commits<CR>
 nnoremap <silent> <Leader>H :Helptags<CR>
 nnoremap <silent> <Leader>hh :History<CR>
 nnoremap <silent> <Leader>h: :History:<CR>
 nnoremap <silent> <Leader>h/ :History/<CR>
 
-" Automatically closing brackets
-inoremap (<CR> ()<Esc>ha
-inoremap {<CR> {}<Esc>ha
-inoremap [<CR> []<Esc>ha
-
-" Automatically closing quotes
-inoremap "<CR> ""<Esc>ha
-inoremap '<CR> ''<Esc>ha
-
-
 " ==== CUSTOM CMD =============================================================
 " When in nvim, enter cmd with `:<command name>`
 
-command! FixWhiteSpace :%s/\s\+$//e                       
+" Run current file and redirect to output.txt
+function! ExecuteFileToOutput() abort
+	let l:fn = ("%")
+	let l:ft = expand("%:e")
+	if l:ft == "py"
+		execute "!cat input.txt | python3 " . l:fn . " > output.txt"
+	elseif l:ft == "js"
+		execute "!cat ./input.txt | node " . l:fn . " > ./output.txt"
+	endif
+endfunction
+
+" command! Run :call ExecuteFileToOutput()
+command! FixWhiteSpace :%s/\s\+$//e
+
+" [IN VIM SESSION], save file and ExecuteFileToOuput()
+nnoremap <Leader>w :silent wa \| :call ExecuteFileToOutput()<CR>
+
+let g:NetrwIsOpen=0
+
+function! ToggleNetrw()
+    if g:NetrwIsOpen
+        let i = bufnr("$")
+        while (i >= 1)
+            if (getbufvar(i, "&filetype") == "netrw")
+                silent exe "bwipeout " . i
+            endif
+            let i-=1
+        endwhile
+        let g:NetrwIsOpen=0
+    else
+        let g:NetrwIsOpen=1
+        silent tabdo Lexplore
+    endif
+endfunction
+
+" Add your own mapping. For example:
+noremap <silent> <C-E> :call ToggleNetrw()<CR>
+
 "  ==== AUTO CMD ===============================================================
+
+" autocmd BufWritePre <buffer> <cmd>EslintFixAll<CR>
 
 autocmd BufEnter * set cursorline
 autocmd BufLeave * set nocursorline
@@ -81,5 +115,3 @@ augroup vimrc-remember-cursor-position
 	autocmd!
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 augroup END
-
-

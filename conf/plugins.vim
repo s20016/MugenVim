@@ -1,7 +1,7 @@
 " =============================================================================
 " Filename: ~/.config/nvim/plugins.vim
 " Author: s20016
-" Last Change: Sun May 23 12:08:58 JST 2021
+" Last Change: Tue Dec  7 23:19:32 JST 2021
 " =============================================================================
 
 " netrw file browser
@@ -11,40 +11,33 @@ let g:netrw_browse_split = 3
 let g:netrw_winsize = 15
 
 " PLUGIN: Themes
-let g:gruvbox_italic=1
-colorscheme gruvbox
+colorscheme onedark
 
 " PLUGIN: vim-commentary
 autocmd FileType apache setlocal commentstring=#\ %s
 
-" PLUGIN: colorizer.lua
-lua require'colorizer'.setup()
-
-" PLUGIN: Neovim Session
-let g:session_directory = "~/.config/nvim/session"
-let g:session_command_aliases = 1
-let g:session_autoload = "no"
-let g:session_autosave = "no"
-
-" PLUGIN: FZF (Open below)
-" let g:fzf_layout = { 'down': '~40%' }
+" ==== SNIPPETS ================================================================
+" custom snippet directory
+let g:UltiSnipsSnippetDirectories=["UltiSnips", $HOME.'/.config/nvim/UltiSnips']
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsListSnippets="<c-l>"
 
 " ==== STARTIFY ===============================================================
 
 " PLUGIN: Startify
+let g:webdevicons_enable_startify = 1
 let g:startify_change_to_dir = 0
-let g:startify_files_number = 5
+let g:startify_enable_special = 0
+let g:startify_files_number = 10
 let g:startify_session_dir = '~/.config/nvim/session'
 let g:startify_lists = [
-			\ { 'type': 'sessions',  'header': ['   Sessions']  },
+			\ { 'type': 'sessions',  'header': ['   Sessions' ] },
+			\ { 'type': 'files',     'header': ['   FILES'    ] },
+			\ { 'type': 'commands',  'header': ['   Commands' ] },
 			\ { 'type': 'bookmarks', 'header': ['   Bookmarks'] }, ]
 
 let g:startify_bookmarks = [
-			\ { 'a': '~/.bash_aliases' } ]
-
-" let g:startify_custom_header = [
-" 	\ '',
-" 	\ '   NVIM STARTIFY' ]
+		  \	{ '-': '~/Documents/Clone/FILES/MyGit' } ]
 
 let g:startify_custom_header = [
 			\ '    ____  ____   ___      _ _____ ____ _____ ____   ',
@@ -57,42 +50,43 @@ let g:startify_custom_header = [
 " ==== ERROR & WARNING ========================================================
 
 " PLUGIN: Ale_linters
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_sign_error = ''
+let g:ale_sign_warning = ''
 let g:ale_lint_on_save = 1
 let g:ale_fix_on_save = 1
-let g:ale_sign_error = '>'
-let g:ale_sign_warning = '>'
-let g:ale_linters = {'python': [ 'flake8' ]}
-let g:ale_fixers = {'python': [ 'autopep8', 'black', 'isort' ]}
+let g:ale_completion_enabled = 1
+let g:ale_javascript_standard_use_global = 1
 
-highlight ALEErrorSign    guifg=#db4437 ctermfg=203
-highlight ALEWarningSign  guifg=#f4b400 ctermfg=228
+let g:ale_linters = {
+			\ 'javascript': ['standard'],
+			\ 'python'    : ['flake8']
+			\ }
 
-" PLUGIN: Git gutter
-let g:gitgutter_async=0
-let g:gitgutter_sign_added = '+'
-let g:gitgutter_sign_modified = '~'
-let g:gitgutter_sign_removed = 'x'
-let g:gitgutter_sign_removed_first_line = '-'
-let g:gitgutter_sign_removed_above_and_below = '='
-let g:gitgutter_sign_modified_removed = '-'
+let g:ale_fixers = {
+			\  '*': ['remove_trailing_lines', 'trim_whitespace'],
+			\ 'javascript': ['eslint', 'prettier_standard'],
+			\ 'html'      : ['prettier'],
+			\ 'python'    : ['autopep8', 'black', 'isort']
+			\ }
 
-let g:gitgutter_override_sign_column_highlight = 0
-let g:gitgutter_set_sign_backgrounds = 1
+highlight Normal       guibg=none
+highlight Visual       guibg=#585858
+highlight SignColumn   guibg=none guifg=#444444
+highlight LineNr       guibg=none guifg=#444444
 
-highlight GitGutterAdd    guifg=#95e454 ctermfg=119
-highlight GitGutterChange guifg=#cae682 ctermfg=180
-highlight GitGutterDelete guifg=#e5786d ctermfg=173
-
-highlight Normal ctermbg=none guibg=none
-highlight SignColumn ctermbg=none guibg=none
-" highlight LineNr ctermbg=none guibg=none
+" highlight CursorLine
+highlight CursorColumn guibg=none guifg=none
+highlight CursorLineNR guibg=#444444 guifg=#808080
 
 " ==== STATUS LINE ============================================================
 " See `:h g:lightline.component` for details
 " See `:h g:lightline.colorscheme` for available colorscheme
 
 let g:lightline = {
-	\ 'colorscheme': 'gruvbox',
+	\ 'colorscheme': 'onedark',
 	\ 'active': {
 	\ 'left': [
 	\		[ 'mode', 'paste' ],
@@ -101,7 +95,7 @@ let g:lightline = {
 	\ 'right': [
 	\   [ 'lineinfo' ], [ 'percent' ], [ 'filetype' ] ] },
 	\ 'component_function': {
-  \   'gitbranch': 'FugitiveHead', 
+  \   'gitbranch': 'FugitiveHead',
   \   'lineinfo': 'LightlineLineinfo' },
 	\ 'tab': {
 	\  'active': [ 'filename', 'modified' ],
@@ -123,3 +117,139 @@ endfunction
 let g:lightline.separator = { 'left': '', 'right': '' }
 let g:lightline.subseparator = { 'left': '', 'right': '' }
 
+lua << EOF
+	local lsp_installer = require("nvim-lsp-installer")
+	local lspkind = require "lspkind"
+	local cmp = require "cmp"
+	lspkind.init()
+
+	require'colorizer'.setup()
+
+	require'nvim-treesitter.configs'.setup {
+		ensure_installed = "maintained",
+		sync_install = false,
+		highlight = {
+			enable = true,
+			disable = {},
+			additional_vim_regex_highlighting = false,
+		},
+	}
+
+  -- CMP Config
+	cmp.setup({
+		snippet = {
+			expand = function(args)
+				vim.fn["UltiSnips#Anon"](args.body)
+			end,
+		},
+
+		mapping = {
+			["<C-d>"] = cmp.mapping.scroll_docs(-4),
+			["<C-f>"] = cmp.mapping.scroll_docs(4),
+			["<C-e>"] = cmp.mapping.close(),
+			["<c-y>"] = cmp.mapping(
+				cmp.mapping.confirm {
+					behavior = cmp.ConfirmBehavior.Insert,
+					select = true,
+				},
+				{ "i", "c" }
+			),
+
+			["<c-space>"] = cmp.mapping {
+				i = cmp.mapping.complete(),
+				c = function(
+					_
+				)
+					if cmp.visible() then
+						if not cmp.confirm { select = true } then
+							return
+						end
+					else
+						cmp.complete()
+					end
+				end,
+			},
+		},
+
+		formatting = {
+			format = lspkind.cmp_format {
+				with_text = true,
+				menu = {
+					buffer = "[BUF]",
+					nvim_lsp = "[LSP]",
+					path = "[PATH]",
+					ultisnips	= "[SNIP]",
+				},
+			},
+		},
+
+		experimental = {
+			native_menu = false,
+			ghost_text = true
+		},
+
+		sources = cmp.config.sources({
+			{ name = 'nvim_lsp' },
+			{ name = 'ultisnips' },
+		}, {
+			{ name = 'buffer', keyword_length = 4 },
+		})
+	})
+
+	cmp.setup.cmdline('/', {
+		sources = {
+			{ name = 'buffer' }
+		}
+	})
+
+	require'cmp'.setup.cmdline('/', {
+		sources = {
+			{ name = 'buffer' }
+		}
+	})
+
+  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+  local nvim_lsp = require('lspconfig')
+
+  local on_attach = function(client, bufnr)
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+  -- Enable completion triggered by <c-x><c-o>
+  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Mappings.
+  local opts = { noremap=true, silent=true }
+
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+	end
+
+	local servers = { 'pyright', 'eslint', 'stylelint_lsp' }
+	for _, lsp in ipairs(servers) do
+		nvim_lsp[lsp].setup {
+			capablities = capabilities,
+			on_attach = on_attach,
+			flags = {
+				debounce_text_changes = 150,
+			}
+		}
+	end
+EOF

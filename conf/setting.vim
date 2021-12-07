@@ -1,7 +1,7 @@
 " =============================================================================
 " Filename: ~/.config/nvim/setting.vim
 " Author: s20016
-" Last Change: Sun May 23 12:08:58 JST 2021
+" Last Change: Tue Dec  7 23:19:32 JST 2021
 " =============================================================================
 
 filetype plugin indent on
@@ -13,9 +13,7 @@ set autoread                            " Auto detect changes outside nvim
 set background=dark                     " Default color
 set backspace=indent,eol,start          " Fix backspace indent
 set clipboard+=unnamedplus              " Copy paste between nvim and prgrms
-set cursorline                          " Highlight current line
-set encoding=utf-8                      " The encoding displayed
-set fileencoding=utf-8                  " The encoding written to file
+set encoding=UTF-8                      " String encoding
 set fileformats=unix,dos,mac            " EOL of file format
 set gcr=a:blinkon2                      " Gui cursor (Blink)
 set gfn=Monospace\ 10                   " Guifont
@@ -28,10 +26,12 @@ set incsearch                           " Show pattern while typing
 set laststatus=2                        " Enable status line
 set modeline                            " Enable modeline
 set modelines=10
+set wrap breakindent
+set mouse=a
 set mousemodel=popup                    " Hide mouse button
 set noswapfile                          " Disable tmp files
 set nowrap                              " Displays long lines as one line
-set number                              " Toggle number line
+set relativenumber                              " Toggle number line
 set pumheight=10                        " Pop-up menu height
 set ruler                               " Ruler in status line
 set scrolloff=6                         " Minimal screen line above and below
@@ -51,7 +51,7 @@ set titlestring=%F                      " Title of window
 set updatetime=100                      " Set update time for Git gutter
 set visualbell                          " Error flash screen
 set wildmenu                            " Cmd tab complete opt
-
-" set spell=en                            " Check spelling errors
-" set relativenumber                      " Number relative to line
-" set colorcolumn=80                      " Add col color in ln 80
+set noshowmode                          " Hide message
+set completeopt=menuone,noselect
+set listchars=tab:\|\
+set list
