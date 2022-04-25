@@ -1,7 +1,7 @@
 " ============================================================================
 " Filename: ~/.config/nvim/init.vim
 " Author: s20016
-" Last Change: Tue Dec  7 23:19:32 JST 2021
+" Last Change: Tue Apr 26 02:19:21 JST 2022
 " =============================================================================
 
 " Enables alias in nvim
@@ -34,7 +34,6 @@ Plug 'mhinz/vim-startify'                                 " Custom vim start
 Plug 'neovim/nvim-lspconfig'                              " LSP
 Plug 'norcalli/nvim-colorizer.lua'                        " Color CSS
 Plug 'onsails/lspkind-nvim'                               " LSP pictograms
-Plug 'psliwka/vim-smoothie'                               " Smooth scrolling
 Plug 'ryanoasis/vim-devicons'                             " Enable icons
 Plug 'tpope/vim-commentary'                               " Comment out lines
 Plug 'tpope/vim-fugitive'                                 " Allows Git commands

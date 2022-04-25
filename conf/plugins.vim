@@ -1,7 +1,7 @@
 " =============================================================================
 " Filename: ~/.config/nvim/plugins.vim
 " Author: s20016
-" Last Change: Tue Dec  7 23:19:32 JST 2021
+" Last Change: Tue Apr 26 02:19:21 JST 2022
 " =============================================================================
 
 " netrw file browser
@@ -40,6 +40,7 @@ let g:startify_bookmarks = [
 		  \	{ '-': '~/Documents/Clone/FILES/MyGit' } ]
 
 let g:startify_custom_header = [
+      \ '                                                    ',
 			\ '    ____  ____   ___      _ _____ ____ _____ ____   ',
 			\ '   |  _ \|  _ \ / _ \    | | ____/ ___|_   _/ ___|  ',
 			\ '   | |_) | |_) | | | |_  | |  _|| |     | | \___ \  ',
@@ -59,6 +60,10 @@ let g:ale_lint_on_save = 1
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 1
 let g:ale_javascript_standard_use_global = 1
+
+let g:ale_pattern_options = {
+			\   '.*\.json$': {'ale_enabled': 0},
+			\}
 
 let g:ale_linters = {
 			\ 'javascript': ['standard'],
@@ -126,7 +131,7 @@ lua << EOF
 	require'colorizer'.setup()
 
 	require'nvim-treesitter.configs'.setup {
-		ensure_installed = "maintained",
+	  ensure_installed = "all",
 		sync_install = false,
 		highlight = {
 			enable = true,
@@ -242,7 +247,7 @@ lua << EOF
   buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 	end
 
-	local servers = { 'pyright', 'eslint', 'stylelint_lsp' }
+	local servers = { 'pyright', 'tsserver'}
 	for _, lsp in ipairs(servers) do
 		nvim_lsp[lsp].setup {
 			capablities = capabilities,

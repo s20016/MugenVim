@@ -1,14 +1,14 @@
 " =============================================================================
 " Filename: ~/.config/nvim/mapping.vim
 " Author: s20016
-" Last Change: Tue Dec  7 23:19:32 JST 2021
+" Last Change: Tue Apr 26 02:19:21 JST 2022
 " =============================================================================
 
 " For key mapping guide
 " See :help key-notaion
 
 " Map leader
-let g:mapleader = ','
+" let g:mapleader = ','
 
 " Auto save
 " au FocusGained,BufEnter * :silent! !
